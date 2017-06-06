@@ -7,7 +7,6 @@
 
 const Audit = require('./audit');
 const statistics = require('../lib/statistics');
-const Formatter = require('../report/formatter');
 
 // Parameters (in ms) for log-normal CDF scoring. To see the curve:
 // https://www.desmos.com/calculator/mdgjzchijg
@@ -99,7 +98,6 @@ class SpeedIndexMetric extends Audit {
         rawValue: Math.round(speedline.perceptualSpeedIndex),
         optimalValue: this.meta.optimalValue,
         extendedInfo: {
-          formatter: Formatter.SUPPORTED_FORMATS.SPEEDLINE,
           value: extendedInfo
         }
       };

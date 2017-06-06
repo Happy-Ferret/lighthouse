@@ -11,7 +11,6 @@
 'use strict';
 
 const Audit = require('../audit');
-const Formatter = require('../../report/formatter');
 const scoreForWastedMs = require('../byte-efficiency/byte-efficiency-audit').scoreForWastedMs;
 
 // Because of the way we detect blocking stylesheets, asynchronously loaded
@@ -85,22 +84,18 @@ class LinkBlockingFirstPaintAudit extends Audit {
       {key: 'totalMs', itemType: 'text', text: 'Delayed Paint By (ms)'},
     ];
 
-    const v1TableHeadings = Audit.makeV1TableHeadings(headings);
-    const v2TableDetails = Audit.makeV2TableDetails(headings, results);
+    const tableDetails = Audit.makeTableDetails(headings, results);
 
     return {
       displayValue,
       score: scoreForWastedMs(delayTime),
       rawValue: delayTime,
       extendedInfo: {
-        formatter: Formatter.SUPPORTED_FORMATS.TABLE,
         value: {
           wastedMs: delayTime,
-          results,
-          tableHeadings: v1TableHeadings
         }
       },
-      details: v2TableDetails
+      details: tableDetails
     };
   }
 

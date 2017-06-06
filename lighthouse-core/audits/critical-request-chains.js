@@ -6,7 +6,6 @@
 'use strict';
 
 const Audit = require('./audit');
-const Formatter = require('../report/formatter');
 
 class CriticalRequestChains extends Audit {
   /**
@@ -117,13 +116,6 @@ class CriticalRequestChains extends Audit {
         rawValue: chainCount <= this.meta.optimalValue,
         displayValue: chainCount,
         optimalValue: this.meta.optimalValue,
-        extendedInfo: {
-          formatter: Formatter.SUPPORTED_FORMATS.CRITICAL_REQUEST_CHAINS,
-          value: {
-            chains,
-            longestChain
-          }
-        },
         details: {
           type: 'criticalrequestchain',
           header: {type: 'text', text: 'View critical network waterfall:'},

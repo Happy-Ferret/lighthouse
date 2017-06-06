@@ -14,7 +14,6 @@
 
 const Audit = require('../audit');
 const statistics = require('../../lib/statistics');
-const Formatter = require('../../report/formatter');
 
 const MAX_DOM_NODES = 1500;
 const MAX_DOM_TREE_WIDTH = 60;
@@ -100,10 +99,6 @@ class DOMSize extends Audit {
       optimalValue: this.meta.optimalValue,
       score: Math.round(score),
       displayValue: `${stats.totalDOMNodes.toLocaleString()} nodes`,
-      extendedInfo: {
-        formatter: Formatter.SUPPORTED_FORMATS.CARDS,
-        value: cards
-      },
       details: {
         type: 'cards',
         header: {type: 'text', text: 'View details'},

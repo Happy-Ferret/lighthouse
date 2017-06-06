@@ -6,7 +6,6 @@
 'use strict';
 
 const Audit = require('./audit');
-const Formatter = require('../report/formatter');
 const URL = require('../lib/url-shim');
 
 const TTFB_THRESHOLD = 200;
@@ -80,7 +79,6 @@ class TTFBMetric extends Audit {
         rawValue: recordsOverBudget.length === 0,
         displayValue,
         extendedInfo: {
-          formatter: Formatter.SUPPORTED_FORMATS.TABLE,
           value: {
             results,
             tableHeadings: {

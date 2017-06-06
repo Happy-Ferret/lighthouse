@@ -65,11 +65,11 @@ describe('Link Block First Paint audit', () => {
     }).then(auditResult => {
       assert.equal(auditResult.rawValue, 500);
       assert.ok(auditResult.displayValue.match('2 resources delayed first paint by 500ms'));
-      const results = auditResult.extendedInfo.value.results;
+      const results = auditResult.details.items;
       assert.equal(results.length, 2);
-      assert.ok(results[0].url.includes('css/style.css'), 'has a url');
-      assert.equal(results[0].totalMs, '500ms');
-      assert.equal(results[1].totalMs, '200ms');
+      assert.ok(results[0][0].text.includes('css/style.css'), 'has a url');
+      assert.equal(results[0][2].text, '500ms');
+      assert.equal(results[1][2].text, '200ms');
     });
   });
 
@@ -80,7 +80,7 @@ describe('Link Block First Paint audit', () => {
       TagsBlockingFirstPaint: []
     }).then(auditResult => {
       assert.equal(auditResult.rawValue, 0);
-      assert.equal(auditResult.extendedInfo.value.results.length, 0);
+      assert.equal(auditResult.details.items.length, 0);
     });
   });
 });
