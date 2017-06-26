@@ -132,7 +132,7 @@ function saveResults(results: Results, artifacts: Object, flags: Flags) {
     promise = promise.then(_ => assetSaver.saveAssets(artifacts, results.audits, resolvedPath));
   }
 
-  const typeToExtension = (type: string) => type === 'domhtml' ? 'dom.html' : type;
+  const typeToExtension = (type: string) => type === 'domhtml' ? 'html' : type;
   return promise.then(_ => {
     if (Array.isArray(flags.output)) {
       return flags.output.reduce((innerPromise, outputType) => {

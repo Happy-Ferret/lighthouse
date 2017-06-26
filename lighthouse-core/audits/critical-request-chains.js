@@ -116,6 +116,12 @@ class CriticalRequestChains extends Audit {
         rawValue: chainCount <= this.meta.optimalValue,
         displayValue: chainCount,
         optimalValue: this.meta.optimalValue,
+        extendedInfo: {
+          value: {
+            chains,
+            longestChain
+          }
+        },
         details: {
           type: 'criticalrequestchain',
           header: {type: 'text', text: 'View critical network waterfall:'},
